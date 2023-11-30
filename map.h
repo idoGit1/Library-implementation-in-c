@@ -3,8 +3,14 @@
 #include <stdlib.h>
 struct map
 {
+	// Implementing tha map data structure.
+	// Saving each pair of key and value at the same index in 
+	// the different dynamic arrays.
+
+	// Each key has to be unique.
 	char* keys;
 	int* values;
+	// Saving the size because using dynamic arrays.
 	int size;
 };
 
@@ -19,7 +25,16 @@ map newMap()
 
 int at(map src, char key)
 {
-
+	// Finding the index of the key
+	for (int i = 0; i < src.size; i++)
+	{
+		if (*(src.keys + i) == key)
+		{
+			return *(src.values + i);
+		}
+	}
+	printf("\n Error- undefined key. Shutting down the program.");
+	exit(1);
 }
 
 
@@ -43,6 +58,7 @@ void printMap(map src)
 {
 	for (int i = 0; i < src.size; i++)
 	{
-		printf("No.%d\tKey: %c\t\tValue: %d\n", i + 1, *(src.keys + i), *(src.values + i));
+		printf("No.%d\tKey: %c\t\tValue: %d\n", i + 1,
+			*(src.keys + i), *(src.values + i));
 	}
 }
